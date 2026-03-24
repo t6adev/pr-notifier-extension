@@ -1,0 +1,28 @@
+{
+  "name": "pr-notifier-extension",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && cp manifest.json dist/ && cp -r icons dist/",
+    "generate-icons": "node --strip-types generate-icons.ts",
+    "check": "pnpm run /check:/",
+    "check:lint": "oxlint .",
+    "check:types": "tsc -p tsconfig.json --noEmit",
+    "check:fmt": "oxfmt --check .",
+    "fix": "pnpm run /fix:/",
+    "fix:lint": "oxlint --fix .",
+    "fix:fmt": "oxfmt ."
+  },
+  "devDependencies": {
+    "@types/chrome": "latest",
+    "@types/node": "latest",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@10.32.1"
+}

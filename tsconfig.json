@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "WebWorker"],
+    "module": "Preserve",
+    "outDir": "dist",
+    "types": ["chrome"],
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["types.d.ts", "content.ts", "background.ts"]
+}
