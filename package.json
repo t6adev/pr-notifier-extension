@@ -4,14 +4,17 @@
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json && cp manifest.json dist/ && cp -r icons dist/",
-    "generate-icons": "node --strip-types generate-icons.ts",
+    "generate-icons": "node --strip-types scripts/generate-icons.ts",
     "check": "pnpm run /check:/",
     "check:lint": "oxlint .",
     "check:types": "tsc -p tsconfig.json --noEmit",
     "check:fmt": "oxfmt --check .",
     "fix": "pnpm run /fix:/",
     "fix:lint": "oxlint --fix .",
-    "fix:fmt": "oxfmt ."
+    "fix:fmt": "oxfmt .",
+    "version:patch": "node --strip-types scripts/bump-version.ts patch",
+    "version:minor": "node --strip-types scripts/bump-version.ts minor",
+    "version:major": "node --strip-types scripts/bump-version.ts major"
   },
   "devDependencies": {
     "@types/chrome": "latest",
