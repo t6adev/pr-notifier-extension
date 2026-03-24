@@ -4,7 +4,14 @@ on:
   push:
     branches: [main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Skip if triggered by the bot's own version bump commit
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   create-release-pr:
     if: github.actor != 'github-actions[bot]'
@@ -17,22 +24,21 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
       - name: Bump patch version
         id: version
         run: |
-          node --strip-types scripts/bump-version.ts patch
+          pnpm run version:patch
           VERSION=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Commit and push version bump
-        env:
-          VERSION: ${{ steps.version.outputs.version }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add manifest.json
-          git commit -m "chore: bump version to ${VERSION}"
-          git push origin main
 
       - name: Create or update release PR
         env:
@@ -51,3 +57,13 @@ jobs:
               --title "Release v${VERSION}" \
               --body "Merging this PR will publish **v${VERSION}**."
           fi
+
+      - name: Commit and push version bump
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git commit -m "chore: bump version to ${VERSION}"
+          git push origin main
