@@ -40,16 +40,6 @@ jobs:
           VERSION=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Commit and push version bump
-        env:
-          VERSION: ${{ steps.version.outputs.version }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add manifest.json
-          git commit -m "chore: bump version to ${VERSION}"
-          git push origin main
-
       - name: Create or update release PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -67,3 +57,13 @@ jobs:
               --title "Release v${VERSION}" \
               --body "Merging this PR will publish **v${VERSION}**."
           fi
+
+      - name: Commit and push version bump
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git commit -m "chore: bump version to ${VERSION}"
+          git push origin main
