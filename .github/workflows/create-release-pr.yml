@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Skip if triggered by the bot's own version bump commit
 concurrency:
   group: ${{ github.workflow }}
@@ -25,8 +28,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'pnpm'
+          node-version: "24"
+          cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
 
