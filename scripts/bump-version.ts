@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 
 const type = process.argv[2];
@@ -21,3 +22,5 @@ manifest.version = newVersion;
 writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
 
 console.log(`Version bumped: ${oldVersion} → ${newVersion}`);
+
+execFileSync("pnpm", ["fix"], { stdio: "inherit" });
