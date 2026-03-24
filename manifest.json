@@ -3,24 +3,15 @@
   "name": "PR Notifier - Chrome Extension",
   "version": "1.0.1",
   "description": "Desktop notifications when a GitHub PR requires your attention",
-  "permissions": [
-    "notifications",
-    "tabs"
-  ],
-  "host_permissions": [
-    "https://github.com/*"
-  ],
+  "permissions": ["notifications", "tabs"],
+  "host_permissions": ["https://github.com/*"],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://github.com/*/*/pull/*"
-      ],
-      "js": [
-        "content.js"
-      ],
+      "matches": ["https://github.com/*/*/pull/*"],
+      "js": ["content.js"],
       "run_at": "document_idle"
     }
   ],
