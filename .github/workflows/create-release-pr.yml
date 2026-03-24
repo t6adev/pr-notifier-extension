@@ -5,6 +5,10 @@ on:
     branches: [main]
 
 # Skip if triggered by the bot's own version bump commit
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   create-release-pr:
     if: github.actor != 'github-actions[bot]'
@@ -17,10 +21,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Bump patch version
         id: version
         run: |
-          node --strip-types scripts/bump-version.ts patch
+          pnpm run version:patch
           VERSION=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
