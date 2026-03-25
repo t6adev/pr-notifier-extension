@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PR Notifier - Chrome Extension",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Desktop notifications when a GitHub PR requires your attention",
   "permissions": ["notifications", "tabs"],
   "host_permissions": ["https://github.com/*"],
