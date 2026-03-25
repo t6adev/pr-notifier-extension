@@ -2,7 +2,7 @@
 
 A Chrome extension that sends desktop notifications when CI checks complete or fail on GitHub PR pages.
 
-![Sample notification](pr-notifier-sample.png)
+<img src="pr-notifier-sample.png" alt="Sample notification" width="320">
 
 ## Why this extension?
 
