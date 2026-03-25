@@ -10,31 +10,24 @@ A Chrome extension that sends desktop notifications when CI checks complete or f
 
 ## Installation
 
-### Prerequisites
-
-- Node.js + [pnpm](https://pnpm.io/)
-
-### Build
-
-```bash
-pnpm install
-pnpm run generate-icons  # first time only
-pnpm run build
-```
-
-### Load in Chrome
-
-1. Open `chrome://extensions`
-2. Enable **Developer mode**
-3. Click **Load unpacked** and select this directory
+1. Download the latest `pr-notifier-v*.zip` from the [Releases page](https://github.com/t6adev/pr-notifier-extension/releases)
+2. Unzip the archive
+3. Open `chrome://extensions`
+4. Enable **Developer mode**
+5. Click **Load unpacked** and select the unzipped folder
 
 ## Development
 
 ```bash
-# Type check
-pnpm run typecheck
+pnpm install
 
-# Build
+# Lint, type check, and format check
+pnpm run check
+
+# Auto-fix lint and format issues
+pnpm run fix
+
+# Build (output to dist/)
 pnpm run build
 ```
 
