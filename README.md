@@ -2,6 +2,30 @@
 
 A Chrome extension that sends desktop notifications when CI checks complete or fail on GitHub PR pages.
 
+## Why this extension?
+
+Waiting for CI on a pull request? You probably find yourself switching back to the PR tab over and over just to check if checks have passed. This extension lets you stay focused on your work — you'll get a browser notification the moment CI finishes. No tab-checking, no context switching.
+
+**Just install it. No tokens, no external services, no configuration.**
+
+### How it compares
+
+| Approach | Examples | What you need |
+| --- | --- | --- |
+| GitHub notification extensions | Notifier for GitHub, GitHub Status Notifier | Personal Access Token (private repos require `repo` scope) |
+| Slack / chat integrations | slack-github-action, PullNotifier | Slack workspace + GitHub Actions workflow changes |
+| Desktop apps | CatLight, Gitify | Separate app install + API authentication |
+| GitHub built-in | Email / web notifications | Nothing extra (but not real-time, not CI-specific) |
+| **GitHub PR Notifier** | **This extension** | **Install and go** |
+
+### Key advantages
+
+- **Zero setup** — No `GITHUB_TOKEN`, no OAuth, no settings page. Install the extension and it works.
+- **No external services** — No Slack, email, or webhook configuration. Everything runs in your browser.
+- **Notifies you while you work** — Browser notifications reach you exactly when you need them: while you're at your desk coding. No noisy alerts when you're away.
+- **Instant detection** — Watches the page DOM in real time via `MutationObserver`, not API polling on a 1–5 minute delay.
+- **Privacy-friendly** — Reads the page you're already viewing. No tokens or credentials are sent anywhere. Safe for private repos without granting broad scopes.
+
 ## Features
 
 - Notifies when CI checks **pass**, **fail**, or require **conflict resolution** on a GitHub PR
