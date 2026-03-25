@@ -10,13 +10,13 @@ Waiting for CI on a pull request? You probably find yourself switching back to t
 
 ### How it compares
 
-| Approach | Examples | What you need |
-| --- | --- | --- |
+| Approach                       | Examples                                    | What you need                                              |
+| ------------------------------ | ------------------------------------------- | ---------------------------------------------------------- |
 | GitHub notification extensions | Notifier for GitHub, GitHub Status Notifier | Personal Access Token (private repos require `repo` scope) |
-| Slack / chat integrations | slack-github-action, PullNotifier | Slack workspace + GitHub Actions workflow changes |
-| Desktop apps | CatLight, Gitify | Separate app install + API authentication |
-| GitHub built-in | Email / web notifications | Nothing extra (but not real-time, not CI-specific) |
-| **GitHub PR Notifier** | **This extension** | **Install and go** |
+| Slack / chat integrations      | slack-github-action, PullNotifier           | Slack workspace + GitHub Actions workflow changes          |
+| Desktop apps                   | CatLight, Gitify                            | Separate app install + API authentication                  |
+| GitHub built-in                | Email / web notifications                   | Nothing extra (but not real-time, not CI-specific)         |
+| **GitHub PR Notifier**         | **This extension**                          | **Install and go**                                         |
 
 ### Key advantages
 
@@ -64,13 +64,13 @@ A content script ([content.ts](content.ts)) runs on GitHub PR pages and monitors
 
 ### CI Status Detection
 
-| Status    | Detected when                                                            |
-| --------- | ------------------------------------------------------------------------ |
-| `success` | Checks section text includes "passed"                                    |
-| `failure` | `[aria-label*="failing"]`, `.bgColor-danger-emphasis`, or danger circle  |
-| `warning` | Text includes "awaiting" or "conflict"                                   |
-| `pending` | Checks section exists but no final state detected                        |
-| `unknown` | No checks section and no known status phrases in body text               |
+| Status    | Detected when                                                           |
+| --------- | ----------------------------------------------------------------------- |
+| `success` | Checks section text includes "passed"                                   |
+| `failure` | `[aria-label*="failing"]`, `.bgColor-danger-emphasis`, or danger circle |
+| `warning` | Text includes "awaiting" or "conflict"                                  |
+| `pending` | Checks section exists but no final state detected                       |
+| `unknown` | No checks section and no known status phrases in body text              |
 
 Notifications fire only on transitions: `pending` → `success` / `failure` / `warning`.
 
