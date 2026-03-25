@@ -2,6 +2,8 @@
 
 A Chrome extension that sends desktop notifications when CI checks complete or fail on GitHub PR pages.
 
+![Sample notification](pr-notifier-sample.png)
+
 ## Why this extension?
 
 Waiting for CI on a pull request? You probably find yourself switching back to the PR tab over and over just to check if checks have passed. This extension lets you stay focused on your work — you'll get a browser notification the moment CI finishes. No tab-checking, no context switching.
